@@ -4,5 +4,9 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
+    return render_template("index.html")
+
+@app.route("/greet", methods=["GET"])
+def greet():
     name = request.args.get("name")
-    return render_template("index.html", name = name)
+    return render_template("greet.html", name=name)
