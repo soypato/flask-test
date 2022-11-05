@@ -1,18 +1,17 @@
-<!DOCTYPE html>
+{% extends "layout.html" %}
 
-<html lang="en">
-    <head>
-        <meta name="viewport" content="initial-scale=1, width=device-width">
-        <title>hello</title>
-    </head>
-    <body>
-
-
-    <form action="/greet" method="get">
-        <input autocomplete="off" autofocus name="name" placeholder="Name" type="text">
-        <input type="submit">
+{% block body %}
+    <h1>Sports inscription!</h1>
+    <form action="/register" method="post">
+        <input type="text" placeholder="Name" name="name">
+        <br>
+        <select name="sport">
+            <option disabled selected value="">Sport</option>
+            {% for sport in sports %}
+                <option value="{{ sport }}">{{ sport }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Register">
     </form>
 
-
-    </body>
-</html>
+{% endblock %}
