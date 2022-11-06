@@ -8,7 +8,7 @@ SPORTS = [
     "voleyball"
 ]
 
-database = {
+DATABASE = {
 
 }
 
@@ -23,10 +23,19 @@ def greet():
 
 @app.route("/register", methods=["POST"])
 def register():   
-  if not request.form.get("name"):
+  name = request.form.get("name")
+  sport = request.form.get("sport")
+  
+  if not name:
       return render_template("failure.html", message="Missing name :(")
-  if not request.form.get("sport"):
+
+  if not sport:
       return render_template("failure.html", message="Missing sport :(")
-  if request.form.get("sport") not in SPORTS:
+
+  if sport not in SPORTS:
       return render_template("failure.html", message="Invalid sport :(")
+  
+
+  DATABASE[name] = sport
+  print(f"{DATABASE}")
   return render_template("success.html")
