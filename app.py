@@ -7,11 +7,9 @@ SPORTS = [
     "football",
     "voleyball"
 ]
-
 DATABASE = {
 
 }
-
 @app.route("/")
 def index():
     return render_template("index.html", sports=SPORTS)
@@ -34,8 +32,11 @@ def register():
 
   if sport not in SPORTS:
       return render_template("failure.html", message="Invalid sport :(")
-  
 
   DATABASE[name] = sport
   print(f"{DATABASE}")
   return render_template("success.html")
+
+@app.route("/users_log")
+def users_log():
+    return render_template("users_log.html", database=DATABASE)
